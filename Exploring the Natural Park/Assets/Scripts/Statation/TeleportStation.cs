@@ -20,6 +20,10 @@ public class TeleportStation : MonoBehaviour
     [SerializeField] Button showMenuBTN;
 
     [Space]
+    [Header("Button Sprite")]
+    [SerializeField] Sprite currentStationSprite, otherStationSprite; 
+
+    [Space]
     [Header("Station Buttons")]
     [SerializeField] Button[] stationButtons;
 
@@ -57,7 +61,8 @@ public class TeleportStation : MonoBehaviour
     int stationNumber;
 
     //for menu Distance
-    const float zDirection = 5f;
+    const float zDirection = 6f;
+    const float yDirection = 1.2f;
 
 
     void Start()
@@ -73,52 +78,32 @@ public class TeleportStation : MonoBehaviour
         switch (stations)
         {
             case Stations.EntryStation:
-                menuTransform.position =
-                     new Vector3(EntryStation.position.x,
-                     EntryStation.position.y + zDirection / 2,
-                     EntryStation.position.z - zDirection);
 
                 stationNumber = 0;
                 break;
             case Stations.RiverStation:
 
-                menuTransform.position =
-                        new Vector3(RiverStation.position.x,
-                        RiverStation.position.y + zDirection / 2,
-                        RiverStation.position.z - zDirection);
-
                 stationNumber = 1;
                 break;
             case Stations.GameStation:
 
-                menuTransform.position =
-                         new Vector3(GameStation.position.x,
-                         GameStation.position.y + zDirection / 2,
-                         GameStation.position.z - zDirection);
 
                 stationNumber = 2;
                 break;
             case Stations.CloudStation:
 
-                menuTransform.position =
-                        new Vector3(CloudStation.position.x,
-                        CloudStation.position.y + zDirection / 2,
-                        CloudStation.position.z - zDirection);
-
                 stationNumber = 3;
                 break;
             case Stations.JungleStation:
 
-                menuTransform.position =
-                             new Vector3(JungleStation.position.x,
-                             JungleStation.position.y + zDirection / 2,
-                             JungleStation.position.z - zDirection);
 
                 stationNumber = 4;
                 break;
         }
         return stationNumber;
     }
+
+    
 
     #region Teleport Actions -------------------------------
 
@@ -170,7 +155,14 @@ public class TeleportStation : MonoBehaviour
 
 
 
-
+    void SettingMenuTransform()
+    {
+        menuTransform.position =
+             new Vector3(player.transform.position.x,
+             player.transform.position.y + yDirection,
+             player.transform.position.z + zDirection);
+        menuTransform.rotation = player.transform.localRotation;
+    }
 
 
     void ShowMenu()
@@ -192,13 +184,13 @@ public class TeleportStation : MonoBehaviour
             {
                 stationButtons[i].transform.GetComponent<Button>().enabled = false;
                 stationButtons[i].transform.SetParent(currentStationButton);
-                stationButtons[i].transform.GetComponent<Image>().color = Color.green;
+                stationButtons[i].transform.GetComponent<Image>().sprite = currentStationSprite;
             }
             else
             {
                 stationButtons[i].transform.GetComponent<Button>().enabled = true;
                 stationButtons[i].transform.SetParent(otherStationsButton);
-                stationButtons[i].transform.GetComponent<Image>().color = Color.white;
+                stationButtons[i].transform.GetComponent<Image>().sprite = otherStationSprite;
             }
         }
         vrMenu.transform.SetParent(menuTransform);
@@ -209,6 +201,7 @@ public class TeleportStation : MonoBehaviour
 
     void ShowMenuPanel()
     {
+        SettingMenuTransform();
         audioSource.PlayOneShot(entrySound);
         showMenuBTN.onClick.RemoveAllListeners();
         showMenuBTN.onClick.AddListener(ShowMenu);
