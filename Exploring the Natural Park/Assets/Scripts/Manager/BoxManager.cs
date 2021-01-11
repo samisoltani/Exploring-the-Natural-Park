@@ -4,34 +4,18 @@ using UnityEngine;
 
 public class BoxManager : MonoBehaviour
 {
-    Transform boxParent;
-    [SerializeField]GameObject[] initBoxes; 
-    [SerializeField]GameObject[] boxes;
+    [SerializeField] Transform boxParentTransform;
+    [SerializeField] GameObject allBoxesPrefab;
+
+    GameObject currentBoxes;
     void Start()
     {
-        boxParent = GetComponent<Transform>();
-
-        InstantiatingBoxes();
-    }
-
-    void InstantiatingBoxes()
-    {
-        for (int i = 0; i < boxes.Length; i++)
-        {
-            GameObject box = Instantiate(initBoxes[i]);
-            boxes[i] = box;
-            boxes[i].SetActive(false);
-        }
+        currentBoxes = Instantiate(allBoxesPrefab, boxParentTransform.position, boxParentTransform.rotation);
     }
 
     public void BackToFirstTrasform()
     {
-        for (int i = 0; i < initBoxes.Length; i++)
-        {
-            GameObject box = Instantiate(boxes[i]);
-            boxes[i] = box;
-            boxes[i].SetActive(false);
-            Destroy(initBoxes[i]);
-        }
+        Destroy(currentBoxes);
+        currentBoxes = Instantiate(allBoxesPrefab, boxParentTransform.position, boxParentTransform.rotation);
     }
 }

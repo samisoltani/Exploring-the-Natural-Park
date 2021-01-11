@@ -11,14 +11,17 @@ public class Shooter : MonoBehaviour
     [SerializeField] GameObject ball;
     [SerializeField] Button shootButton;
     [SerializeField] BoxManager boxManager;
-    Rigidbody rb;
     [SerializeField] Animator animator;
+    [SerializeField] AudioClip shooterClip;
+    AudioSource audioSource;
+    Rigidbody rb;
     bool isShooting = false;
 
     private void Start()
     {
         shootButton.onClick.AddListener(ShootButton);
         rb = ball.GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -35,6 +38,7 @@ public class Shooter : MonoBehaviour
         isShooting = true;
         //rb.AddForce(new Vector3(0, yspeed, zspeed));
         animator.SetBool("shoot", false);
+        audioSource.PlayOneShot(shooterClip);
         Invoke("BackToShooter", timeAfterShoot);
     }
 

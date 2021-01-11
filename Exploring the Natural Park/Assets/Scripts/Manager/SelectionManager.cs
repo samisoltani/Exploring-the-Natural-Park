@@ -2,9 +2,9 @@
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField] private string selectableTag = "Selectable";
+    const string selectableTag = "Selectable";
     [SerializeField] private Material highlightMaterial;
-    [SerializeField] private Material defaultMaterial;
+    Material defaultMaterial;
 
     private Transform _selection;
     
@@ -13,10 +13,16 @@ public class SelectionManager : MonoBehaviour
         if (_selection != null)
         {
             var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
+            if(selectionRenderer.material == highlightMaterial)
+            {
+                selectionRenderer.material = defaultMaterial;
+            }
+            else
+            {
+                defaultMaterial = selectionRenderer.material;
+            }
             _selection = null;
         }
-        
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -25,6 +31,7 @@ public class SelectionManager : MonoBehaviour
             if (selection.CompareTag(selectableTag))
             {
                 var selectionRenderer = selection.GetComponent<Renderer>();
+
                 if (selectionRenderer != null)
                 {
                     selectionRenderer.material = highlightMaterial;

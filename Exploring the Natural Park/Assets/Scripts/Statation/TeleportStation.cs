@@ -62,7 +62,7 @@ public class TeleportStation : MonoBehaviour
 
     //for menu Distance
     const float zDirection = 6f;
-    const float yDirection = 1.2f;
+    const float yDirection = 1.5f;
 
 
     void Start()
@@ -161,7 +161,7 @@ public class TeleportStation : MonoBehaviour
              new Vector3(player.transform.position.x,
              player.transform.position.y + yDirection,
              player.transform.position.z + zDirection);
-        menuTransform.rotation = player.transform.localRotation;
+        //menuTransform.rotation = player.transform.localRotation;
     }
 
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3703532380969408991}
   m_Layer: 0
   m_Name: SelectionManager
-  m_TagString: Selectable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e77c584b381af147872f233a6e67704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectableTag: Selectable
   highlightMaterial: {fileID: 2100000, guid: d27498fbc35fb514092251c008b4ddab, type: 2}
   defaultMaterial: {fileID: 2100000, guid: 6c24bafebfdd8d5409c9b756aad7b191, type: 2}

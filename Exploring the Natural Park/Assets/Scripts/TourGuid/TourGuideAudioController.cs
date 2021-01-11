@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum InteractionsType
+public enum InteractionType
 {
     Hello,
     AnswerToNO,
