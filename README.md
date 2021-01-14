@@ -16,6 +16,9 @@ Download zip file and then paly “Exploring the Natural Park” as the picture 
 
 ![Installation](https://user-images.githubusercontent.com/46788927/104607571-34738080-5696-11eb-9725-f397cf8c0772.png)
 
+## Let's Play
+[Download Game File](https://drive.google.com/file/d/1ArcXdvTe5QI_4mMnnAjGyd0U4gD1p3j9/view?usp=sharing)
+
 ## How to use?
 
 You can walk around or jump or go to different stations by yourself (except Cloud Station) instead of using teleport stations. Tour guide in every Station explains what you may expect from them.
